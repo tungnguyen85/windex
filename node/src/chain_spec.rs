@@ -1,13 +1,13 @@
 use sp_core::{Pair, Public, sr25519};
-use node_template_runtime::{
+use node_windex_runtime::{
 	AccountId, AuraConfig, BalancesConfig, GenesisConfig, GrandpaConfig,
-	SudoConfig, SystemConfig, WASM_BINARY, Signature
+	SudoConfig, SystemConfig, WASM_BINARY, Signature , GenericAssetConfig
 };
 use sp_consensus_aura::sr25519::AuthorityId as AuraId;
 use sp_finality_grandpa::AuthorityId as GrandpaId;
 use sp_runtime::traits::{Verify, IdentifyAccount};
 use sc_service::ChainType;
-
+use node_windex_runtime::Balance;
 // The URL for the telemetry server.
 // const STAGING_TELEMETRY_URL: &str = "wss://telemetry.polkadot.io/submit/";
 
@@ -92,6 +92,7 @@ pub fn local_testnet_config() -> Result<ChainSpec, String> {
 			vec![
 				authority_keys_from_seed("Alice"),
 				authority_keys_from_seed("Bob"),
+				authority_keys_from_seed("Charlie"),
 			],
 			// Sudo account
 			get_account_id_from_seed::<sr25519::Public>("Alice"),
@@ -113,7 +114,9 @@ pub fn local_testnet_config() -> Result<ChainSpec, String> {
 			true,
 		),
 		// Bootnodes
-		vec![],
+		vec![
+
+		],
 		// Telemetry
 		None,
 		// Protocol ID
@@ -133,6 +136,8 @@ fn testnet_genesis(
 	endowed_accounts: Vec<AccountId>,
 	_enable_println: bool,
 ) -> GenesisConfig {
+	const STASH: Balance = 10000;
+	const UNIT: u128 = 1_000_000_000_000;
 	GenesisConfig {
 		frame_system: Some(SystemConfig {
 			// Add Wasm runtime to storage.
@@ -141,7 +146,7 @@ fn testnet_genesis(
 		}),
 		pallet_balances: Some(BalancesConfig {
 			// Configure endowed accounts with initial balance of 1 << 60.
-			balances: endowed_accounts.iter().cloned().map(|k|(k, 1 << 60)).collect(),
+			balances: vec![], // endowed_accounts.iter().cloned().map(|k|(k, 1 << 60)).collect(),
 		}),
 		pallet_aura: Some(AuraConfig {
 			authorities: initial_authorities.iter().map(|x| (x.0.clone())).collect(),
@@ -153,5 +158,14 @@ fn testnet_genesis(
 			// Assign network admin rights.
 			key: root_key,
 		}),
+		pallet_generic_asset: Some(GenericAssetConfig{
+			assets: vec![0],
+			initial_balance: 3*UNIT,
+			endowed_accounts: endowed_accounts
+				.clone().into_iter().map(Into::into).collect(),
+			next_asset_id: 1,
+			staking_asset_id: 0,
+			spending_asset_id: 0
+		})
 	}
 }
