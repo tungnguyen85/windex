@@ -8,6 +8,7 @@ use sp_finality_grandpa::AuthorityId as GrandpaId;
 use sp_runtime::traits::{Verify, IdentifyAccount};
 use sc_service::ChainType;
 use node_windex_runtime::Balance;
+
 // The URL for the telemetry server.
 // const STAGING_TELEMETRY_URL: &str = "wss://telemetry.polkadot.io/submit/";
 
@@ -159,11 +160,11 @@ fn testnet_genesis(
 			key: root_key,
 		}),
 		pallet_generic_asset: Some(GenericAssetConfig{
-			assets: vec![0],
+			assets: vec![0,1,2],
 			initial_balance: UNIT*UNIT,
 			endowed_accounts: endowed_accounts
 				.clone().into_iter().map(Into::into).collect(),
-			next_asset_id: 1,
+			next_asset_id: 3,
 			staking_asset_id: 0,
 			spending_asset_id: 0
 		})
