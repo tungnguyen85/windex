@@ -30,6 +30,7 @@ serde = { features = ['derive'], optional = true, version = '1.0.101' }
 
 # local dependencies
 pallet-windex = { path = '../pallets/windex', default-features = false, version = '2.0.0' }
+runtime-api = { default-features = false, path = "../pallets/windex/runtime-api" }
 
 # Substrate dependencies
 frame-benchmarking = { default-features = false, optional = true, version = '2.0.0' }

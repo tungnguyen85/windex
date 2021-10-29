@@ -25,6 +25,9 @@ structopt = '0.3.8'
 # local dependencies
 node-windex-runtime = { path = '../runtime', version = '2.0.0' }
 
+runtime-api = { default-features = false, path = "../pallets/windex/runtime-api" }
+rpc = { path = "../pallets/windex/rpc" }
+
 # Substrate dependencies
 frame-benchmarking = '2.0.0'
 frame-benchmarking-cli = '2.0.0'

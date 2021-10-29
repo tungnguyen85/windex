@@ -3498,6 +3498,8 @@ dependencies = [
  "jsonrpc-core 15.1.0",
  "node-windex-runtime",
  "pallet-transaction-payment-rpc",
+ "rpc",
+ "runtime-api",
  "sc-basic-authorship",
  "sc-cli",
  "sc-client-api",
@@ -3539,12 +3541,12 @@ dependencies = [
  "pallet-balances",
  "pallet-generic-asset",
  "pallet-grandpa",
- "pallet-windex",
  "pallet-randomness-collective-flip",
  "pallet-sudo",
  "pallet-timestamp",
  "pallet-transaction-payment",
  "pallet-transaction-payment-rpc-runtime-api",
+ "pallet-windex",
  "parity-scale-codec",
  "serde",
  "sp-api",
@@ -3819,26 +3821,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "pallet-windex"
-version = "2.0.0"
-dependencies = [
- "compare",
- "frame-support",
- "frame-system",
- "hex",
- "jsonrpc-core 14.2.0",
- "pallet-generic-asset",
- "parity-scale-codec",
- "serde",
- "serde_json",
- "sp-arithmetic",
- "sp-core",
- "sp-io",
- "sp-runtime",
- "sp-std",
-]
-
-[[package]]
 name = "pallet-randomness-collective-flip"
 version = "2.0.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -3954,6 +3936,26 @@ dependencies = [
  "parity-scale-codec",
  "serde",
  "sp-api",
+ "sp-runtime",
+ "sp-std",
+]
+
+[[package]]
+name = "pallet-windex"
+version = "2.0.0"
+dependencies = [
+ "compare",
+ "frame-support",
+ "frame-system",
+ "hex",
+ "jsonrpc-core 14.2.0",
+ "pallet-generic-asset",
+ "parity-scale-codec",
+ "serde",
+ "serde_json",
+ "sp-arithmetic",
+ "sp-core",
+ "sp-io",
  "sp-runtime",
  "sp-std",
 ]
@@ -4916,6 +4918,39 @@ checksum = "99371657d3c8e4d816fb6221db98fa408242b0b53bac08f8676a41f8554fe99f"
 dependencies = [
  "libc",
  "winapi 0.3.9",
+]
+
+[[package]]
+name = "rpc"
+version = "0.1.0"
+dependencies = [
+ "jsonrpc-core 15.1.0",
+ "jsonrpc-core-client",
+ "jsonrpc-derive",
+ "pallet-windex",
+ "parity-scale-codec",
+ "runtime-api",
+ "sc-rpc",
+ "serde",
+ "sp-api",
+ "sp-arithmetic",
+ "sp-blockchain",
+ "sp-core",
+ "sp-runtime",
+ "sp-std",
+]
+
+[[package]]
+name = "runtime-api"
+version = "0.1.0"
+dependencies = [
+ "pallet-windex",
+ "serde_json",
+ "sp-api",
+ "sp-arithmetic",
+ "sp-core",
+ "sp-runtime",
+ "sp-std",
 ]
 
 [[package]]
