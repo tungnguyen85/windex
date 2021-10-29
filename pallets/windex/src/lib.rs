@@ -144,7 +144,7 @@ decl_module! {
         ///
         ///  This function returns a status that, new Trading Pair is successfully registered or not.
 
-		#[weight = 1000000000]
+		#[weight = 100000]
 		pub fn register_new_orderbook(origin, quote_asset_id: u32, base_asset_id: u32) -> dispatch::DispatchResultWithPostInfo{
 		    let trader = ensure_signed(origin)?;
 
