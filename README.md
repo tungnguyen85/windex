@@ -1,3 +1,7 @@
+# This is the first version of WinDEX team. These images demo the backend blockchain
+![Backend 1](images/backend_1.png)
+![Backend 2](images/backend_2.png)
+
 # Substrate Node Template
 
 A new FRAME-based Substrate node, ready for hacking :rocket:
